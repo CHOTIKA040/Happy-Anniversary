@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แกลลอรี่</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            padding: 10px;
+            cursor: pointer; /* เพิ่มให้แสดงว่าเป็นคลิกได้ */
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .gallery-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .gallery img {
+            width: 250px;
+            height: auto;
+            border-radius: 10px;
+            border: 5px solid #fff;
+            padding: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            transform: rotate(2deg);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1) rotate(0deg);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .message-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+
+        .message-card p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .close-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .close-button:hover {
+            background-color: #d32f2f;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Media Queries สำหรับหน้าจอมือถือ */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .gallery img {
+                width: 200px;
+            }
+
+            .message-card p {
+                font-size: 1rem;
+            }
+
+            .back-button {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+        }
+
+        /* สำหรับแท็บเล็ต */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .gallery img {
+                width: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- การฝังเสียงจาก YouTube แบบซ่อน -->
+    <iframe id="music-iframe" src="https://www.youtube.com/embed/Lep1JdIbpig?autoplay=1&mute=0&controls=0&modestbranding=1&showinfo=0&loop=1&playlist=Lep1JdIbpig" 
+        width="0" height="0" style="visibility: hidden;">
+    </iframe>
+
+    <h1>1st Anniversary</h1>
+
+    <div class="gallery-container">
+        <div class="gallery">
+            <!-- แสดงรูปภาพทั้งหมด 13 รูป -->
+            <img src="/Image/1.jpg" alt="รูปที่ 1" data-message="131166 มีแฟนเป็นเอ๋อ ขอบคุณมากที่จำรายละเอียดเล็กน้อยๆของเราได้ ขอบคุณที่พยายามเปลี่ยนแปลงอะไรหลายๆอย่างเพื่อเรา">
+            <img src="/Image/2.jpg" alt="รูปที่ 2" data-message="เย้ๆ มีเอ๋อเป็นแฟนมาเดือนนึงละ เดือนนี้สนุกมากได้หนีไปเที่ยวลพบุรีด้วย ได้นั่งรถตู้ไปที่ไกลๆครั้งแรก ไว้พาเราไปลองอะไรใหม่ๆอีกนะ">
+            <img src="/Image/3.jpg" alt="รูปที่ 3" data-message="2 เดือนแล้วอ่าเปิดต้นปีด้วยการเคาท์ดาวน์ด้วยกันด้วย อยากมีก้องอยู่ด้วยในทุกเทศกาลเลย">
+            <img src="/Image/4.jpg" alt="รูปที่ 4" data-message="3 เดือนละเร็วมะ เดือนนี้ก้องไม่น่ารัก โกดๆแต่ไม่เป็นไรตอนนี้หายแล้วอย่าทำอีกนะ เดือนนี้ได้ไปเที่ยวทะเลด้วยกันครั้งแรกไว้ไปทะเลด้วยกันอีกหลายๆที่เลยนะ">
+            <img src="/Image/5.jpg" alt="รูปที่ 5" data-message="4 เดือนละ เดือนนี้อยู่หอด้วยกันเดือนสุดท้ายแล้ว แต่ก็ได้ทำอะไรด้วยกันหลายอย่างเลยเราชอบอยู่กับก้องชอบได้ทำอะไรใหม่ๆด้วยกัน เราไม่ชอบเดินแต่เราเดินกับก้องได้ไม่เบื่อเลย ชอบที่ได้เดินไปกินข้าวด้วยกันทุกวันกลับห้องมาก็ได้นอนกอดกัน คิดถึงจังเลยเนาะ">
+            <img src="/Image/6.jpg" alt="รูปที่ 6" data-message="5 เดือนละ แยกย้ายกลีบบ้านกันแล้วอะที่บอกว่าเราร้องไห้ทุกวันเราพูดจริงนะ คิดถึงก้องมากๆเลย">
+            <img src="/Image/7.jpg" alt="รูปที่ 7" data-message="ครึ่งปีแล้วเร็วเนาะไปฝึกสอนละ มีงานทำไม่ค่อยว่างแล้วแต่ก็ยังคิดถึงก้องมากๆอยู่ดี">
+            <img src="/Image/8.jpg" alt="รูปที่ 8" data-message="7 เดือนแล้วก้องก็ยังเอ๋อเหมือนเดิม ชอบทำตัวมีพิรุธ">
+            <img src="/Image/9.jpg" alt="รูปที่ 9" data-message="8 เดือนละ เดือนนี้วันเกิดเด็กเอ๋อได้ไปลพบุรีอีกแล้ว เราไม่เคยซื้อเค้กไปให้ใครที่บ้านเลยก้องคนแรกดีใจป่าวๆๆ ถ้าดีใจต้องให้เราเป่าเทียนอีก555555">
+            <img src="/Image/10.jpg" alt="รูปที่ 10" data-message="9 เดือนคลอดได้แล้ว รักก้องเหมือนเดิม">
+            <img src="/Image/11.jpg" alt="รูปที่ 11" data-message="10 เดือนผ่านไปไวเหมือนโกหกก้องก็ยังไม่หายเอ๋อ">
+            <img src="/Image/12.jpg" alt="รูปที่ 12" data-message="11 เดือนแล้วปิดเทอมไม่ได้เจอกันเลยแอบมีพิรุธป่าว ขอบคุณมากที่รอเราขอโทาที่หลับบ่อยๆก็มันง่วงจะทำไงได้ แต่จะพยายามนอนให้น้อยลงนะ">
+            <img src="/Image/13.jpg" alt="รูปที่ 13" data-message="วันนี้วันอะไร ติ๊กตอกๆๆๆ ครบรอบ 1 ปีแล้ว ดีใจป่าว เก่งเหมือนกันนะเนี่ยอยู่กับเราได้นานขนาดนี้ เบื่อเรายังยังรักเราเหมือนวันแรกที่ได้รักรึเปล่า เรายังรักก้องเหมือนวันแรกที่ได้รักอยู่เลย ขอโทษที่หงุดหงิดใส่บ่อยแต่เราไม่ผิดนะก้องชอบทำตัวเอ๋อใส่ก่อน อยู่พาเราไปกินอะไรอร่อยๆอีกหลายๆที่ก่อนนะ รักก้องที่สุดเลย ถ้ารักเราเหมือนกันให้ทำปากจู๋ส่งมา">
+        </div>
+
+        <!-- การ์ดข้อความ -->
+        <div class="message-card" id="message-card">
+            <p id="message">คลิกที่รูปภาพเพื่อดูข้อความ</p>
+            <!-- ปุ่มปิดการ์ด -->
+            <button class="close-button" id="close-button">ปิด</button>
+        </div>
+    </div>
+
+    <!-- ปุ่มย้อนกลับไปหน้า celebration.html -->
+    <a href="celebration.html" class="back-button">ย้อนกลับ</a>
+
+    <script>
+        var images = document.querySelectorAll('.gallery img');
+        var messageCard = document.getElementById('message-card');
+        var messageText = document.getElementById('message');
+        var closeButton = document.getElementById('close-button');
+        var iframe = document.getElementById('music-iframe');
+
+        // ฟังก์ชันเล่นเพลงเมื่อคลิกที่บริเวณใดของหน้าเว็บ
+        document.body.addEventListener('click', function() {
+            iframe.style.visibility = 'visible'; // แสดง iframe
+        });
+
+        // แสดงการ์ดข้อความเมื่อคลิกรูป
+        images.forEach(function(image) {
+            image.addEventListener('click', function() {
+                var message = image.getAttribute('data-message');
+                messageText.innerText = message; // เปลี่ยนข้อความเมื่อคลิกรูปภาพ
+                messageCard.style.display = 'block'; // แสดงการ์ดข้อความ
+            });
+        });
+
+        // ปิดการ์ดข้อความเมื่อกดปุ่มปิด
+        closeButton.addEventListener('click', function() {
+            messageCard.style.display = 'none'; // ซ่อนการ์ดข้อความ
+        });
+    </script>
+
+</body>
+</html>

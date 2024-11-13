@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ของขวัญให้เอ๋อ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffebcd;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .box {
+            color: white;
+            font-size: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px; /* ปรับขนาดให้เหมาะสมสำหรับมือถือ */
+            height: 100px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        /* ใช้การไล่โทนสีที่ไม่ซ้ำกันในแต่ละกล่อง */
+        .box:nth-child(1) {
+            background: linear-gradient(135deg, #ff0000, #ff9900); /* ไล่สีแดง-ส้ม */
+        }
+
+        .box:nth-child(2) {
+            background: linear-gradient(135deg, #00ff00, #009900); /* ไล่สีเขียว */
+        }
+
+        .box:nth-child(3) {
+            background: linear-gradient(135deg, #0000ff, #6600ff); /* ไล่สีน้ำเงิน-ม่วง */
+        }
+
+        .box:nth-child(4) {
+            background: linear-gradient(135deg, #ffff00, #ffcc00); /* ไล่สีเหลือง-ส้ม */
+        }
+
+        .box:nth-child(5) {
+            background: linear-gradient(135deg, #ff00ff, #cc00ff); /* ไล่สีม่วง-ชมพู */
+        }
+
+        .box:nth-child(6) {
+            background: linear-gradient(135deg, #00ffff, #0099ff); /* ไล่สีฟ้า-เขียว */
+        }
+
+        .box:nth-child(7) {
+            background: linear-gradient(135deg, #ff6600, #ff3300); /* ไล่สีส้มเข้ม-แดง */
+        }
+
+        .box:nth-child(8) {
+            background: linear-gradient(135deg, #0099ff, #0033ff); /* ไล่สีฟ้าเข้ม */
+        }
+
+        .box:nth-child(9) {
+            background: linear-gradient(135deg, #9900ff, #660099); /* ไล่สีม่วงเข้ม */
+        }
+
+        .box:hover {
+            opacity: 0.9;
+            transform: scale(1.05); /* เพิ่มเอฟเฟกต์ขยายเมื่อ hover */
+        }
+
+        /* การ์ดข้อความที่จะแสดง */
+        .message-card {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 100;
+        }
+
+        .message-card h2 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .message-card p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .close-btn {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .close-btn:hover {
+            background-color: #cc0000;
+        }
+
+        /* Media Queries สำหรับหน้าจอมือถือ */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px; /* ลดขนาดหัวข้อบนมือถือ */
+            }
+
+            .box {
+                font-size: 24px; /* ลดขนาดฟอนต์บนมือถือ */
+                width: 80px; /* ลดขนาดกล่อง */
+                height: 80px;
+            }
+
+            .container {
+                grid-template-columns: repeat(3, 1fr); /* ปรับการจัดวางให้เหมาะกับหน้าจอเล็ก */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>การ์ดจุ่มเด็กเอ๋อ</h1> <!-- เพิ่มหัวข้อตรงกลาง -->
+
+    <div class="container">
+        <div class="box" data-message="เย้ๆ ก้องต้องเลี้ยงสเวนเซ่นเรา">1</div>
+        <div class="box" data-message="เอาไปเลยการ์ดตามใจขออะไรก็ได้ 1 อย่าง">2</div>
+        <div class="box" data-message="เย้ๆ ก้องต้องเต้นให้เราดู">3</div>
+        <div class="box" data-message="เย้ๆ ก้องต้องหมุนตัวและบอกรักเราดังๆ">4</div>
+        <div class="box" data-message="อยู่ด้วยกันไปนานๆ นะ!" id="box-5">5</div> <!-- กำหนด id สำหรับกล่องที่ 5 -->
+        <div class="box" data-message="กินมุทะกันเราเลี้ยงๆๆ">6</div>
+        <div class="box" data-message="รักเอ๋อจังขอตังยี่สิบ">7</div>
+        <div class="box" data-message="มาหาหน่อยซื้อกล้วยให้กิน 2 ลูก">8</div>
+        <div class="box" data-message="เย้ๆ ก้องจะต้องให้เราดูน้อง 5 นาที">9</div>
+    </div>
+
+    <!-- การ์ดข้อความ -->
+    <div class="message-card" id="message-card">
+        <h2>ข้อความจากกล่อง</h2>
+        <p id="message-text"></p>
+        <button class="close-btn" id="close-btn">ปิด</button>
+    </div>
+
+    <script>
+        // เลือกทุกกล่องที่มีการคลิก
+        const boxes = document.querySelectorAll('.box');
+        const messageCard = document.getElementById('message-card');
+        const messageText = document.getElementById('message-text');
+        const closeButton = document.getElementById('close-btn');
+
+        // เมื่อคลิกที่กล่อง
+        boxes.forEach(box => {
+            box.addEventListener('click', function() {
+                // ตรวจสอบว่าคลิกกล่องที่ 5 หรือไม่
+                if (box.id === "box-5") {
+                    window.location.href = 'gallery.html'; // เปลี่ยนหน้าไปที่ gallery.html
+                } else {
+                    const message = box.getAttribute('data-message');
+                    messageText.textContent = message; // แสดงข้อความที่กำหนดใน data-message
+                    messageCard.style.display = 'block'; // แสดงการ์ดข้อความ
+                }
+            });
+        });
+
+        // เมื่อคลิกปิดการ์ดข้อความ
+        closeButton.addEventListener('click', function() {
+            messageCard.style.display = 'none'; // ซ่อนการ์ดข้อความ
+        });
+    </script>
+
+</body>
+</html>

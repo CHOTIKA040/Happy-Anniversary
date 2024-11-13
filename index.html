@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รหัสไรตอบไม่ถูกโดนต่อย!</title> 
+    <style>
+        /* ปรับแต่งสไตล์ */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        #passwordDisplay {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 5px;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .keypad button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .keypad button:hover {
+            background-color: #45a049;
+        }
+
+        #clearBtn {
+            background-color: #ff4c4c;
+        }
+
+        #clearBtn:hover {
+            background-color: #ff3333;
+        }
+
+        .bottom-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        #submitBtn {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        #submitBtn:hover {
+            background-color: #45a049;
+        }
+
+        #errorMsg {
+            color: red;
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Enter Our Password</h2>
+        <div id="passwordDisplay">******</div>
+        
+        <div class="keypad">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>*</button>
+            <button>0</button>
+            <button>#</button>
+        </div>
+
+        <div class="bottom-row">
+            <button id="clearBtn">Del</button>
+            <button id="submitBtn">submit</button>
+        </div>
+
+        <p id="errorMsg">มาให้ต่อยเดี๋ยวนี้!</p>
+    </div>
+
+    <script>
+        // รหัสผ่านที่ถูกต้อง
+        var correctPassword = "131166"; // ตั้งรหัสผ่านเป็น 131166
+        var enteredPassword = ""; // เก็บรหัสผ่านที่ผู้ใช้กด
+
+        // อ้างอิงถึง element ต่างๆ
+        var passwordDisplay = document.getElementById("passwordDisplay");
+        var errorMsg = document.getElementById("errorMsg");
+
+        // ฟังก์ชันแสดงรหัสผ่านที่ถูกกรอก (เป็น ****** แทนตัวเลขจริง)
+        function updatePasswordDisplay() {
+            passwordDisplay.innerText = "*".repeat(enteredPassword.length) || "******";
+        }
+
+        // เมื่อผู้ใช้กดปุ่มตัวเลข
+        document.querySelectorAll('.keypad button').forEach(function(button) {
+            button.addEventListener('click', function() {
+                if (enteredPassword.length < 6 && button.innerText !== "ลบ") { // ปรับให้รองรับรหัส 6 ตัว
+                    enteredPassword += button.innerText;
+                    updatePasswordDisplay();
+                }
+            });
+        });
+
+        // ฟังก์ชันเคลียร์รหัสผ่าน
+        document.getElementById("clearBtn").addEventListener('click', function() {
+            enteredPassword = "";
+            updatePasswordDisplay();
+        });
+
+        // ฟังก์ชันเมื่อกดปุ่มยืนยัน
+        document.getElementById("submitBtn").addEventListener('click', function() {
+            if (enteredPassword === correctPassword) {
+                window.location.href = "celebration.html"; // เปลี่ยนไปยังหน้าเฉลิมฉลอง
+            } else {
+                errorMsg.style.display = "block"; // แสดงข้อความรหัสผิด
+                enteredPassword = ""; // เคลียร์รหัสผ่านที่กรอกไป
+                updatePasswordDisplay();
+            }
+        });
+    </script>
+
+</body>
+</html>
